@@ -2,11 +2,15 @@
 
 A small FastAPI messaging app dogfooding [Codoc](https://github.com/ahmedmsabry2000/codoc): one `codoc.yaml`, a nested `src/messaging/codoc.spec.yaml`, and manual / hybrid / auto-generated pages under `docs/`.
 
+Clone: `https://github.com/ahmedmsabry2000/codoc-example`
+
 ## Setup
 
 Requires [uv](https://docs.astral.sh/uv/) and Python 3.12+.
 
 ```bash
+git clone https://github.com/ahmedmsabry2000/codoc-example.git
+cd codoc-example
 uv sync
 # Install Codoc into this venv (editable sibling or PyPI when published):
 uv pip install -e ../codoc
