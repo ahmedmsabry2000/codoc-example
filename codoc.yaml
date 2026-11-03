@@ -4,7 +4,12 @@ engine:
   site_dir: site
   site_name: Messaging
 vale:
-  enabled: false
+  enabled: true
 paths:
   scripts_dir: .codoc/scripts
-terms: []
+terms:
+  - Codoc
+  - FastAPI
+  - Messaging
+  - Zensical
+  - uvicorn
