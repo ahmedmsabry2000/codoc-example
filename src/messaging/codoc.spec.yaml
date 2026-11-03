@@ -1,0 +1,31 @@
+docs:
+  - id: index
+    type: manual
+    path: docs/index.md
+  - id: guide
+    type: hybrid
+    path: docs/guides/messaging.md
+    placeholders:
+      - id: endpoints
+        script: .codoc/scripts/inject_endpoints.py
+    links:
+      - id: api.ref
+        label: API reference
+coverage:
+  source:
+    - id: package
+      type: auto-generated
+      paths:
+        - "*.py"
+      docs:
+        - id: package.overview
+          path: docs/package.md
+          script: .codoc/scripts/gen_package_overview.py
+          canonical: index
+        - id: api.ref
+          path: docs/reference/api.md
+          script: .codoc/scripts/gen_api_ref.py
+          canonical: guide
+          links:
+            - id: guide
+              label: Messaging guide

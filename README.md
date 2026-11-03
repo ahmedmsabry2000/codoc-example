@@ -1,6 +1,6 @@
 # Codoc example — messaging API
 
-A small FastAPI messaging app used as a **pre-Codoc baseline**. It is a normal Python package with no Codoc config yet, so you can install Codoc later and see what `codoc init` adds.
+A small FastAPI messaging app dogfooding [Codoc](https://github.com/ahmedmsabry2000/codoc): one `codoc.yaml`, a nested `src/messaging/codoc.spec.yaml`, and manual / hybrid / auto-generated pages under `docs/`.
 
 ## Setup
 
@@ -8,30 +8,36 @@ Requires [uv](https://docs.astral.sh/uv/) and Python 3.12+.
 
 ```bash
 uv sync
+# Install Codoc into this venv (editable sibling or PyPI when published):
+uv pip install -e ../codoc
+uv pip install zensical
 ```
 
-## Run
+## App
 
 ```bash
 uv run uvicorn messaging.api:app --reload
 ```
 
-Or:
+Open http://127.0.0.1:8000/docs for the interactive API.
+
+## Docs with Codoc
 
 ```bash
-uv run python -m messaging
+uv run codoc status
+uv run codoc generate
+uv run codoc validate
+uv run codoc build
+uv run codoc serve
 ```
 
-Open [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) for the interactive API.
+Serve prints a local URL (default http://localhost:8000/). Stop with `uv run codoc clean`.
 
-## API
+| Page | Type | Path |
+|------|------|------|
+| Index | manual | `docs/index.md` |
+| Messaging guide | hybrid | `docs/guides/messaging.md` |
+| Package overview | auto-generated | `docs/package.md` |
+| API reference | auto-generated | `docs/reference/api.md` |
 
-| Method | Path | Behavior |
-|--------|------|----------|
-| `POST` | `/conversations` | Create a conversation (`title` optional) |
-| `GET` | `/conversations` | List conversations |
-| `GET` | `/conversations/{id}` | Get one conversation |
-| `POST` | `/conversations/{id}/messages` | Send a message (`sender`, `body`) |
-| `GET` | `/conversations/{id}/messages` | List messages in order |
-
-Data lives in memory and resets when the process stops.
+Parse/inject scripts live under `.codoc/scripts/`.
