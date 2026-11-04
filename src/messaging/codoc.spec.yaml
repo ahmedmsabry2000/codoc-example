@@ -1,10 +1,21 @@
+intent: >
+  Document the in-memory messaging API so a developer can try the FastAPI
+  endpoints, understand the package layout, and keep hybrid/auto pages aligned
+  with the source.
+audience: Developers exploring Codoc against a small FastAPI sample app.
 docs:
   - id: index
     type: manual
     path: docs/index.md
+    purpose: >
+      Introduce the messaging sample and point readers to the guide and
+      generated reference pages.
   - id: guide
     type: hybrid
     path: docs/guides/messaging.md
+    purpose: >
+      Explain how conversations and messages work, with an injected endpoint
+      table kept in sync by script.
     placeholders:
       - id: endpoints
         script: .codoc/scripts/inject_endpoints.py
@@ -22,10 +33,14 @@ coverage:
           path: docs/package.md
           script: .codoc/scripts/gen_package_overview.py
           canonical: index
+          purpose: >
+            Auto-generated map of messaging package modules under this scope.
         - id: api.ref
           path: docs/reference/api.md
           script: .codoc/scripts/gen_api_ref.py
           canonical: guide
+          purpose: >
+            Generated endpoint reference for the messaging FastAPI app.
           links:
             - id: guide
               label: Messaging guide
